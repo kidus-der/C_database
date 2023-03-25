@@ -6,43 +6,6 @@
   in an infinite loop until close*/
 
 //create struct for Input Buffer
-typedef struct {
-
-  char* buffer;
-  size_t buffer_len;
-  ssize_t input_len;
-} InputBuffer;
-
-InputBuffer* new_input_buffer() { //using struct, make function that handles new input
-
-  InputBuffer* input_buffer = (InputBuffer*)malloc(sizeof(InputBuffer)); //allocate memory to input_buffer
-  input_buffer->buffer = NULL;
-  input_buffer->buffer_len = 0;
-  input_buffer->input_len = 0;
-
-  return input_buffer;
-}
-
-//function prototypes
-void print_user_prompt();
-void read_user_input(InputBuffer* input_buffer);
-void close_user_input_buff(InputBuffer* input_buffer);
-
-int main(){
-
-    InputBuffer* input_buffer = new_input_buffer(); //point to new_input_buffer
-    while (true) {
-        print_user_prompt(); //call function to prompt user and begin interaction
-        read_user_input(input_buffer);
-
-        if (strcmp(input_buffer->buffer, ".exit") == 0) {
-            close_user_input_buff(input_buffer);
-            exit(0);
-        } else {
-            printf("Command entered could not be recognized '%s'.\n", input_buffer->buffer);
-        }
-    }
-}
 
 //prompt user
 void print_user_prompt(){
